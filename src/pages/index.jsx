@@ -1,13 +1,9 @@
-import { Jumbotron } from "@/components/Jumbotron";
-import { Container } from "react-bootstrap";
+import { Login } from "@/components/Login";
 
-
-
-
-export default function Home() {
+export default function Home () {
   return (
-    <Container>
-      <Jumbotron/>
-    </Container>
-  );
-}    
+    <>
+        <Login/>
+    </>
+  )
+} 
