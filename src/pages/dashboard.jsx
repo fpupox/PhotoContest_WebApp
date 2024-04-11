@@ -1,6 +1,7 @@
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { securePage } from "@/services/securePage";
+import { Button } from 'react-bootstrap';
 
 export default securePage(function Dashboard() {
   const supabase = useSupabaseClient();
@@ -13,11 +14,13 @@ export default securePage(function Dashboard() {
   };
 
   return (
-    <div>
-      Dashboard for <strong>{user?.email || "Not authenticated"}</strong>
-      <button type="button" onClick={handleSignOut}>
-        Sign out
-      </button>
+    <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'center', padding: '20px', gap: '10px' }}>
+      <strong>{user?.email || "Not authenticated"}</strong>
+      <Button type="button" onClick={handleSignOut}>
+        Sign Out
+      </Button>
     </div>
   );
 });
+
+          

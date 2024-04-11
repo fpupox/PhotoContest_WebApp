@@ -1,6 +1,7 @@
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { Form, Button } from 'react-bootstrap'; // Import Form and Button components from React Bootstrap
 
 export function Login() {
   const form = useForm({
@@ -55,18 +56,36 @@ export function Login() {
   };
 
   return (
-    <div>
-      <h2>Login/Register</h2>
-      <label>Email</label>
-      <input type="email" {...form.register("email")} />
-      <label>Password</label>
-      <input type="password" {...form.register("password")} />
-      <button type="button" onClick={handleLogin}>
-        Login
-      </button>
-      <button type="button" onClick={handleSignup}>
-        Sign up
-      </button>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ width: '500px' }}>
+        <h2>Login/Register</h2>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" {...form.register("email")} />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" {...form.register("password")} />
+          </Form.Group>
+
+          
+          <div style={{ display: 'flex', justifyContent: 'right', gap: '10px' }}>
+
+          <Button style={{ marginTop: '20px' }} variant="primary" type="button" onClick={handleLogin}>
+            Login
+          </Button>
+          
+          <Button style={{ marginTop: '20px' }} variant="secondary" type="button" onClick={handleSignup}>
+            Sign up
+          </Button>
+          
+          </div> 
+
+        </Form>
+      </div>
     </div>
   );
 }
+
