@@ -1,9 +1,11 @@
 import { Login } from "@/components/Login";
+import Navbar from './Navbar'; // Import Navbar component
 
-export default function Home () {
+export default function Home() {
   return (
     <>
-        <Login/>
+      <Navbar />
+      <Login />
     </>
-  )
-} 
+  );
+}

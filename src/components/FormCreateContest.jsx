@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the CSS for styling
 
 
-function TextControlsExample() {
+function FormCreateContest() {
   const [selectedDate, setSelectedDate] = useState(null); 
   const [endDate, setEndDate] = useState(null);
   const [agree, setAgree] = useState(false); // State for agreement
@@ -24,7 +24,11 @@ function TextControlsExample() {
 
   return (
     <Form>
-      
+
+      <div style={{ display: 'flex', justifyContent: 'right', gap: '10px', paddingTop: '20px' }}>
+        <Button variant="primary" type="submit"> Submit </Button>
+      </div>
+
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" placeholder="Contest Name" />
@@ -102,4 +106,4 @@ function TextControlsExample() {
   );
 }
 
-export default TextControlsExample;
+export default FormCreateContest;

@@ -3,7 +3,9 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'react-bootstrap';
-import TextControlsExample from './TextControlsExample'; // Assuming this is the correct path
+import TextControlsExample from './TextControlsExample'; 
+import FormEntry from './FormEntry'; 
+
 
 export function Login() {
   const form = useForm({
@@ -81,6 +83,7 @@ export function Login() {
           </div>
         </Form>
         <TextControlsExample /> {/* Rendering TextControlsExample component */}
+        <FormEntry/>
       </div>
     </div>
   );
