@@ -20,6 +20,7 @@ export default securePage(function Dashboard() {
         Sign Out
       </Button>
     </div>
+    
   );
 });
 

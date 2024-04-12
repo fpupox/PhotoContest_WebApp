@@ -1,7 +1,9 @@
+import React from 'react';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { Form, Button } from 'react-bootstrap'; // Import Form and Button components from React Bootstrap
+import { Form, Button } from 'react-bootstrap';
+import TextControlsExample from './TextControlsExample'; // Assuming this is the correct path
 
 export function Login() {
   const form = useForm({
@@ -15,12 +17,10 @@ export function Login() {
 
   const handleLogin = async () => {
     const values = form.getValues();
-    const { data, error: signInError } = await supabase.auth.signInWithPassword(
-      {
-        email: values.email,
-        password: values.password,
-      }
-    );
+    const { data, error: signInError } = await supabase.auth.signInWithPassword({
+      email: values.email,
+      password: values.password,
+    });
 
     if (signInError) {
       return;
@@ -70,20 +70,17 @@ export function Login() {
             <Form.Control type="password" placeholder="Password" {...form.register("password")} />
           </Form.Group>
 
-          
-          <div style={{ display: 'flex', justifyContent: 'right', gap: '10px' }}>
-
-          <Button style={{ marginTop: '20px' }} variant="primary" type="button" onClick={handleLogin}>
-            Login
-          </Button>
-          
-          <Button style={{ marginTop: '20px' }} variant="secondary" type="button" onClick={handleSignup}>
-            Sign up
-          </Button>
-          
-          </div> 
-
+          <div style={{ display: 'flex', justifyContent: 'right', gap: '10px', paddingTop: '20px' }}>
+            <Button variant="primary" type="button" onClick={handleLogin}>
+              Login
+            </Button>
+            
+            <Button variant="secondary" type="button" onClick={handleSignup}>
+              Sign up
+            </Button>
+          </div>
         </Form>
+        <TextControlsExample /> {/* Rendering TextControlsExample component */}
       </div>
     </div>
   );
