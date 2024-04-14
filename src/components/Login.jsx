@@ -3,8 +3,7 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'react-bootstrap';
-import TextControlsExample from './TextControlsExample'; 
-import FormEntry from './FormEntry'; 
+
 
 
 export function Login() {

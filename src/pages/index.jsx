@@ -1,6 +1,7 @@
 import { Login } from "@/components/Login";
 import Navbar from './Navbar';
-import DashCreated from "@/components/DashCreated";
+import VoteDashboard from "@/components/VoteDashboard";
+
 
 export default function Home() {
   return (

@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link'; // Import Link from Next.js
+
 
 import {
   MDBNavbar,
@@ -14,12 +16,23 @@ export default function App() {
           <MDBContainer fluid>
             <MDBNavbarBrand href='#'><strong>PhotoContest</strong></MDBNavbarBrand>
             <div style={{ display: 'flex', justifyContent: 'right', gap: '10px', paddingTop: '20px', gap: '10px' }}>
-              <h6>FormEntry</h6>
-              <h6>FormCreateContest</h6>
-              <h6>Dashboard</h6>
-              <h6>Login</h6>
-              <h6>EnterPost</h6>
-              
+            
+            <Link href="/components/DashCreated">
+              <h6 style={{ cursor: 'pointer' }}>DashCreated</h6>
+            </Link>
+                
+            <Link href="/components/FormCreateContest">
+              <h6 style={{ cursor: 'pointer' }}>FormCreateContest</h6>    
+            </Link>
+
+            <Link href="/components/Dashboard">
+              <h6 style={{ cursor: 'pointer' }}>Dashboard</h6>    
+            </Link>
+
+            <Link href="/components/Login">
+              <h6 style={{ cursor: 'pointer' }}>Login</h6>    
+            </Link>
+                          
       </div>
 
           </MDBContainer>
