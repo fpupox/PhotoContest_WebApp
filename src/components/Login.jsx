@@ -58,7 +58,7 @@ export function Login() {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto', paddingTop: '10%' }}>
       <div style={{ width: '500px' }}>
         <h2>Login/Register</h2>
         <Form>
@@ -73,17 +73,16 @@ export function Login() {
           </Form.Group>
 
           <div style={{ display: 'flex', justifyContent: 'right', gap: '10px', paddingTop: '20px' }}>
-            <Button variant="primary" type="button" onClick={handleLogin}>
-              Login
-            </Button>
-            
+                        
             <Button variant="secondary" type="button" onClick={handleSignup}>
               Sign up
             </Button>
+            <Button variant="primary" type="button" onClick={handleLogin}>
+              Login
+            </Button>
           </div>
         </Form>
-        <TextControlsExample /> {/* Rendering TextControlsExample component */}
-        <FormEntry/>
+        
       </div>
     </div>
   );

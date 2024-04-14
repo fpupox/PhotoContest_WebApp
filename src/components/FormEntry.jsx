@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the CSS for styling
 
 
@@ -23,9 +22,11 @@ function FormEntry() {
   };
 
   return (
+    
+    <div style={{ width: '500px' }}>  
     <Form>
 
-      
+          
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>First Name</Form.Label>
@@ -47,15 +48,7 @@ function FormEntry() {
         <Form.Control type="file" onChange={handleFileUpload} />
       </Form.Group>
 
-      <Form.Group controlId="formAgree" className="mb-3">
-        <Form.Check
-          type="checkbox"
-          label="Agree to Terms and Conditions"
-          checked={agree}
-          onChange={(e) => setAgree(e.target.checked)}
-        />
-      </Form.Group>
-
+      
       <h6>Create your Account</h6>
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -67,13 +60,22 @@ function FormEntry() {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
+
+      <Form.Group controlId="formAgree" className="mb-3">
+        <Form.Check
+          type="checkbox"
+          label="Agree to Terms and Conditions"
+          checked={agree}
+          onChange={(e) => setAgree(e.target.checked)}
+        />
+      </Form.Group>
       
 
             
 
       
-      <div style={{ display: 'flex', justifyContent: 'right', gap: '10px', paddingTop: '20px' }}>
-        <Button variant="primary" type="submit"> Submit </Button>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', paddingTop: '20px' }}>
+         <Button variant="primary" type="submit" className="w-100"> Post my Entry </Button>
       </div>
 
 
@@ -81,6 +83,8 @@ function FormEntry() {
       
 
     </Form>
+
+    </div>
 
     
   );

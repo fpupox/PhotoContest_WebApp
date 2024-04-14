@@ -34,7 +34,6 @@ function FormCreateContest() {
         <Form.Control type="text" placeholder="Contest Name" />
       </Form.Group>
       
-      
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Initial Date</Form.Label>
