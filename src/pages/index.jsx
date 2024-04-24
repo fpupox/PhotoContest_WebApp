@@ -1,13 +1,18 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Login from '../components/Login';
+import Navbar from '@/components/Navbar';
+import CreateContestComp from '@/components/CreateContestComp';
 
 
-export default function Index() {
+
+
+export default function Home() {
   return (
     <>
       <Navbar />
-      <Login />
+      <CreateContestComp />
+      
+      
+      
       
     </>
   );

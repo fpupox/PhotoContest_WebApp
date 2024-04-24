@@ -68,6 +68,7 @@ function FormEntry() {
         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px' }}>
           <Link href="/dashcreatedpg.jsx">
             <Button variant="primary" type="submit" className="w-100" style={{ width: '100%' }}> Post my Entry </Button>
+            <button className="btn btn-primary" style={{ width: '100%'}}>XXXXX</button>
           </Link>  
         </div>
       </Form>

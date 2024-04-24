@@ -14,7 +14,9 @@ function CreateContestComp() {
         <div className="hero-content">
           <h1>Create your Contest Now!</h1>
           <p>Let your audience know about it.</p>
-          <button className="btn btn-primary" style={{ width: '100%'}}>Create Contest</button>
+          <Link href="/createcontestpage">
+            <Button className="btn btn-primary" style={{ width: '100%' }}>Create Contest</Button>
+          </Link>
         </div>
       </div>
 
