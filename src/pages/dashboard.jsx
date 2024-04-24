@@ -3,8 +3,8 @@ import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { securePage } from "@/services/securePage";
 import { Button } from 'react-bootstrap';
-import Navbar from './Navbar'; // Import Navbar component
-import FormEntry from '/workspaces/PhotoContest_WebApp/src/components/FormEntry.jsx';
+import Navbar from '../components/Navbar'; 
+import FormEntry from '../components/FormEntry.jsx';
 
 
 // Define Dashboard component
@@ -23,9 +23,9 @@ const Dashboard = () => {
       <Navbar />
       <div style={{ display: 'flex', justifyContent: 'right', alignItems: 'center', padding: '20px', gap: '10px' }}>
         <strong>{user?.email || "Not authenticated"}</strong>
-      <Button type="button" onClick={handleSignOut}>
+      <Button type="button" onClick={handleSignOut}> 
           Sign Out
-      </Button>
+      </Button> 
       
       </div> 
       

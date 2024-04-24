@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { shareOnSocialMedia } from '../utils'; // Add the missing import statement
 
 function DashCreated() {
   return (
@@ -18,7 +19,7 @@ function DashCreated() {
         <div className="hero-content">
           <h1>Your Contest is in the Air!</h1>
           <p>Let your audience know about it.</p>
-          <button className="btn btn-primary" style={{ width: '100%'}}>Share It</button>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https.mycontest.com" className="btn btn-primary" style={{ width: '100%' }} onClick={shareOnSocialMedia}>Share It</a>
         </div>
       </div>
 
@@ -28,4 +29,3 @@ function DashCreated() {
 }
 
 export default DashCreated;
-

@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'react-bootstrap';
 
-
-
 export function Login() {
   const form = useForm({
     defaultValues: {

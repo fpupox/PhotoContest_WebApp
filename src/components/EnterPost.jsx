@@ -19,14 +19,13 @@ function App () {
 
     async function createPost() {
         await supabase
-        .from(`posts`)
+        .from(`Posts`)
         .insert([
             { title, content }
         ])
         .single()
         setPosts({ title: "", content: ""})
         fetchPosts()
-
     }
 
     return (

@@ -1,9 +1,9 @@
-import { Login } from "@/components/Login";
-import Navbar from './Navbar';
-import VoteDashboard from "@/components/VoteDashboard";
+import React from 'react';
+import Navbar from '../components/Navbar';
+import Login from '../components/Login';
 
 
-export default function Home() {
+export default function Index() {
   return (
     <>
       <Navbar />
