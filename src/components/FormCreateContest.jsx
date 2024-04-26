@@ -39,6 +39,8 @@ function FormCreateContest() {
       </Form.Group>
       
 
+      <div style={{ display: 'flex', height: 'auto', width: '100%', justifyContent: 'space-between', gap: '10px' }}>
+      <div>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Initial Date</Form.Label>
         <br />
@@ -48,7 +50,9 @@ function FormCreateContest() {
           dateFormat="dd/MM/yyyy" // Date format
         />
       </Form.Group>
+      </div>
 
+      <div>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
         <Form.Label>End Date</Form.Label>
         <br />
@@ -58,6 +62,10 @@ function FormCreateContest() {
           dateFormat="dd/MM/yyyy" // Date format
         />
       </Form.Group>
+      </div>
+      </div>
+
+
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Rules</Form.Label>
@@ -73,12 +81,12 @@ function FormCreateContest() {
         <Form.Control type="email" placeholder="name@example.com" />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
         <Form.Label>Judge #2 Email Address</Form.Label>
         <Form.Control type="email" placeholder="name@example.com" />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
         <Form.Label>Judge #3 Email Address</Form.Label>
         <Form.Control type="email" placeholder="name@example.com" />
       </Form.Group>
@@ -93,9 +101,10 @@ function FormCreateContest() {
           )}
         </Form.Group>
 
-        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px', width: '400px' }}>
           <Link href="/contestcreatedpage">
-            <Button variant="primary" type="submit" className="w-100" style={{ width: '100%' }}> Submit </Button>
+            
+          <Button variant="primary" type="submit" >Submit</Button>
           </Link>
         </div>
       </Form>

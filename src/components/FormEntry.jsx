@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the CSS for styling
 import Link from 'next/link';
+import DatePicker from 'react-datepicker';
 
 function FormEntry() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -29,7 +30,7 @@ function FormEntry() {
   };
 
   return (
-    <div style={{ width: '500px' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
       <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>First Name</Form.Label>
@@ -59,17 +60,23 @@ function FormEntry() {
         <Form.Group controlId="formAgree" className="mb-3">
           <Form.Check
             type="checkbox"
-            label="Agree to Terms and Conditions"
+            label={
+              <span style={{ textDecoration: 'underline' }}>
+                <a href="https://www.samsung.com/us/sustainability/environment/policies-and-guidelines/" target="_blank">I agree with all the rules</a>
+              </span>
+            }
             checked={agree}
             onChange={(e) => setAgree(e.target.checked)}
           />
         </Form.Group>
 
+
+
         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px' }}>
-          <Link href="/dashcreatedpg.jsx">
+          <Link href="/contestentered">
             <Button variant="primary" type="submit" className="w-100" style={{ width: '100%' }}> Post my Entry </Button>
-            <button className="btn btn-primary" style={{ width: '100%'}}>XXXXX</button>
-          </Link>  
+
+          </Link>
         </div>
       </Form>
     </div>

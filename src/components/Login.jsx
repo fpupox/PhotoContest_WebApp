@@ -57,7 +57,7 @@ export function Login() {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto', paddingTop: '10%' }}>
       <div style={{ width: '500px' }}>
-        <h2>Login/Register</h2>
+        <h3>Login/Register</h3>
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
