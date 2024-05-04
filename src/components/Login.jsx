@@ -3,6 +3,8 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'react-bootstrap';
+import Link from 'next/link';
+
 export function Login() {
   const form = useForm({
     defaultValues: {
@@ -44,7 +46,7 @@ export function Login() {
         access_token: data.session.access_token,
         refresh_token: data.session.refresh_token,
       });
-      router.replace("/dashboard");
+      router.replace("/");
     }
   };
   return (
@@ -60,14 +62,23 @@ export function Login() {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" {...form.register("password")} />
           </Form.Group>
-          <div style={{ display: 'flex', justifyContent: 'right', gap: '10px', paddingTop: '20px' }}>
-            <Button variant="secondary" type="button" onClick={handleSignup}>
-              Sign up
-            </Button>
-            <Button variant="primary" type="button" onClick={handleLogin}>
-              Login
-            </Button>
-          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '20px' }}>
+  <div style={{ justifyContent: 'space-between', alignItems: 'center', display: 'flex', width: '100%' }}>
+    <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'gray' }}>
+      <h6>Go Back to Home</h6>
+    </Link>
+    <div style={{ display: 'flex', gap: '10px' }}>
+      <Button variant="secondary" type="button" onClick={handleSignup}>
+        Sign up
+      </Button>
+      <Button variant="primary" type="button" onClick={handleLogin}>
+        Login
+      </Button>
+    </div>
+  </div>
+</div>
+
         </Form>
       </div>
     </div>

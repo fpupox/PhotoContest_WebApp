@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+
 
 function PublicPageComp() {
   return (
@@ -12,7 +14,7 @@ function PublicPageComp() {
           
           
           <Link href="/contestentry">
-            <Button variant="primary" type="submit" className="w-100" style={{ width: '100%' }}> Let's Get Started! </Button>
+            <Button variant="primary" type="submit" className="w-100" style={{ width: '60vh' }}> Let's Get Started! </Button>
 
             
             

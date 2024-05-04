@@ -1,60 +1,88 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import 'react-datepicker/dist/react-datepicker.css'; // Import the CSS for styling
-import Link from 'next/link';
-import DatePicker from 'react-datepicker';
+import { useForm } from 'react-hook-form';
+import { useRouter } from "next/router";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 function FormEntry() {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [agree, setAgree] = useState(false); // State for agreement
-  const [uploadedFile, setUploadedFile] = useState(null); // State for uploaded file
+  const [agree, setAgree] = useState(false);
+  const [bannerPath, setBannerPath] = useState(null);
+  const { register, handleSubmit } = useForm();
+  const router = useRouter();
+  const supabase = useSupabaseClient();
 
-  // Function to handle file upload
-  const handleFileUpload = (event) => {
+  const handleFileUpload = async (event) => {
     const file = event.target.files[0];
-    // Add your file upload logic here
     console.log('File uploaded:', file);
-    setUploadedFile(file);
+  
+    const randomName = Math.random().toString(36).substring(7);
+    const { data, error } = await supabase.storage.from('pictures').upload(randomName, file, {
+      cacheControl: '3600',
+      upsert: false
+    });
+    
+    if (error) {
+      console.error('Error uploading file:', error.message);
+    } else {
+      console.log('File uploaded successfully');
+      console.log({ data });
+
+      setBannerPath(data.fullPath);
+    }
   };
 
-  // Function to clear uploaded file
-  const clearFile = () => {
-    setUploadedFile(null);
+  const onSubmit = async (formData) => {
+    const { firstName, lastName, title } = formData;
+    
+    // Get the contest ID from somewhere (e.g., user input, application state)
+    const contestId = '288c149c-18d0-42ac-804b-1409ccee827b';
+  
+    const { error: contestError } = await supabase.from('Posts').insert([  
+      {
+        first_name: firstName,
+        last_name: lastName,
+        title: title,
+        banner_path: bannerPath,
+        contest_id: contestId, // Include the contest ID
+      },
+    ]).select();
+  
+    if (contestError) {
+      console.error('Error inserting data: ', contestError);
+      return;
+    }
+  
+    router.replace("/contestentered");
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Add your form submission logic here
-    console.log('Form submitted');
-  };
+  
+   
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
-      <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control type="text" placeholder="First Name" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control type="text" placeholder="Last Name" />
-        </Form.Group>
-
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Title</Form.Label>
-          <Form.Control type="text" placeholder="Image Title" />
+          <Form.Control {...register('title')} type="text" placeholder="Title" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control {...register('firstName')} type="text" placeholder="First Name" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control {...register('lastName')} type="text" placeholder="Last Name" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
+          <Form.Label>Title</Form.Label>
+          <Form.Control {...register('title2')} type="text" placeholder="Image Title" />
         </Form.Group>
 
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Upload Image</Form.Label>
           <Form.Control type="file" onChange={handleFileUpload} />
-          {uploadedFile && (
-            <div style={{ marginTop: '10px' }}>
-              <Button variant="secondary" onClick={clearFile}>Clear Image</Button>
-            </div>
-          )}
         </Form.Group>
 
         <Form.Group controlId="formAgree" className="mb-3">
@@ -70,13 +98,8 @@ function FormEntry() {
           />
         </Form.Group>
 
-
-
         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px' }}>
-          <Link href="/contestentered">
-            <Button variant="primary" type="submit" className="w-100" style={{ width: '100%' }}> Post my Entry </Button>
-
-          </Link>
+          <Button variant="primary" type="submit" className="w-100" style={{ width: '100%' }}> Post my Entry </Button>
         </div>
       </Form>
     </div>
@@ -84,4 +107,3 @@ function FormEntry() {
 }
 
 export default FormEntry;
-
