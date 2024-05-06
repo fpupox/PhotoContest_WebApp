@@ -29,9 +29,11 @@ export function Login() {
         access_token: data.session.access_token,
         refresh_token: data.session.refresh_token,
       });
-      router.replace(returnTo);
+      router.replace("/");
     }
   };
+
+  
   const handleSignup = async () => {
     const values = form.getValues();
     const { data, error: signInError } = await supabase.auth.signUp({
@@ -49,10 +51,12 @@ export function Login() {
       router.replace("/");
     }
   };
+
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto', paddingTop: '10%' }}>
-      <div style={{ width: '500px' }}>
-        <h3>Login/Register</h3>
+      <div style={{ maxWidth: '500px', width: '100%', padding:'20px' }}>
+        <h3>Login / Register</h3>
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
@@ -64,7 +68,7 @@ export function Login() {
           </Form.Group>
 
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '20px' }}>
-  <div style={{ justifyContent: 'space-between', alignItems: 'center', display: 'flex', width: '100%' }}>
+  <div style={{ justifyContent: 'space-between', display: 'flex', width: '100%' }}>
     <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'gray' }}>
       <h6>Go Back to Home</h6>
     </Link>

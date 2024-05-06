@@ -1,15 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useRouter } from "next/router";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 function FormEntry() {
+  const [contestName, setContestName] = useState('');
   const [agree, setAgree] = useState(false);
   const [bannerPath, setBannerPath] = useState(null);
   const { register, handleSubmit } = useForm();
   const router = useRouter();
   const supabase = useSupabaseClient();
+
+  useEffect(() => {
+    const fetchContestData = async () => {
+      try {
+        const { data: contestData, error: contestError } = await supabase
+          .from('Contests')
+          .select('name, banner_path')
+          .order('created_at', { ascending: false })
+          .limit(1);
+
+        if (contestError) {
+          throw contestError;
+        }
+
+        if (contestData && contestData.length > 0) {
+          setContestName(contestData[0].name);
+          setBannerPath(contestData[0].banner_path);
+        }
+      } catch (error) {
+        console.error('Error fetching contest data:', error.message);
+      }
+    };
+
+    fetchContestData();
+  }, []);
 
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -41,7 +67,7 @@ function FormEntry() {
       {
         first_name: firstName,
         last_name: lastName,
-        title: title,
+        title: title, // Check if title is present in formData
         banner_path: bannerPath,
         contest_id: contestId, // Include the contest ID
       },
@@ -53,17 +79,38 @@ function FormEntry() {
     }
   
     router.replace("/contestentered");
-  };
+};
   
    
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
+
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      paddingTop: '20px', 
+      width: '60vh', 
+      flexDirection: 'column',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)'
+    }}>
+
+      <div>
+      <h1> Welcome to <br/><strong>{contestName}</strong> Contest </h1>
+      <br/>
+      <h5> Enter the Contest by filling out the form below </h5>
+      </div>
+
+      
+      <div>
+
+      
+      
+
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Title</Form.Label>
-          <Form.Control {...register('title')} type="text" placeholder="Title" />
-        </Form.Group>
+        
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
           <Form.Label>First Name</Form.Label>
@@ -77,7 +124,7 @@ function FormEntry() {
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
           <Form.Label>Title</Form.Label>
-          <Form.Control {...register('title2')} type="text" placeholder="Image Title" />
+          <Form.Control {...register('title')} type="text" placeholder="Image Title" />
         </Form.Group>
 
         <Form.Group controlId="formFile" className="mb-3">
@@ -102,6 +149,7 @@ function FormEntry() {
           <Button variant="primary" type="submit" className="w-100" style={{ width: '100%' }}> Post my Entry </Button>
         </div>
       </Form>
+    </div>
     </div>
   );
 }

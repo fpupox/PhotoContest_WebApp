@@ -8,12 +8,6 @@ import { FaCalendarAlt } from 'react-icons/fa';
 import { useRouter } from "next/router";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
-// Define the contact schema using Yup
-// const ContactSchema = Yup.object().shape({
-//   name: Yup.string().max(140, "Too long!").required("Required."),
-//   email: Yup.string().email("Invalid email.").max(140, "Too long!").required("Required."),
-//   rules: Yup.string().max(280, "Too long!").required("Required."),
-// });
 
 const FormCreateContest = () => {
   const [startDate, setStartDate] = useState(null);
@@ -90,13 +84,17 @@ const FormCreateContest = () => {
     <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
 
       <Form onSubmit={handleSubmit(onSubmit)}>
-        
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Name</Form.Label>
-          <Form.Control {...register('name')} type="text" placeholder="Contest Name" />
-        </Form.Group>
+        <div style={{ display: 'flex', height: 'auto', flexDirection: 'column',justifyContent: 'space-between', justifyContent: 'flex-end', maxWidth: '700px', width: '100%', paddingBottom:'50px', gap: '10px' }}>
+          
+          <div>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Name</Form.Label>
+              <Form.Control {...register('name')} type="text" placeholder="Contest Name" />
+            </Form.Group>
+          </div>
 
-        <div style={{ display: 'flex', height: 'auto', justifyContent: 'space-between', width: '500px', gap: '10px' }}>
+          
+          <div style={{ display: 'flex', height: 'auto', flexDirection: 'column',justifyContent: 'space-between', gap: '10px', justifyContent: 'flex-end' }}>
           <div>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Start Date</Form.Label>
@@ -126,7 +124,7 @@ const FormCreateContest = () => {
               </div>
             </Form.Group>
           </div>
-        </div>
+          </div>
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Rules</Form.Label>
@@ -158,11 +156,14 @@ const FormCreateContest = () => {
           )}
         </Form.Group>
 
-
         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', width: '400px' }}>
-          <Button variant="primary" type="submit">Submit</Button>
+          <Button variant="primary" type="submit" style={{ display: 'flex', justifyContent: 'center', gap: '16px', width: '400px'}}>Submit</Button>
+        </div>
+
         </div>
       </Form>
+
+
     </div>
   );
 };
