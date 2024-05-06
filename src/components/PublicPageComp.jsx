@@ -39,7 +39,7 @@ function PublicPageComp() {
 
   return (
     <React.Fragment>
-      <div className="hero-container" style={{ display: 'flex', height: 'auto', width: '100%', paddingTop: '30vh', paddingBottom: '30vh',justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
+      <div className="hero-container" style={{ display: 'flex', height: 'auto', width: '100%', paddingTop: '10vh', paddingBottom: '30vh',justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
         <div className="hero-content">
           
         {bannerPath && (

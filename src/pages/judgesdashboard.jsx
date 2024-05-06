@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import JudgesDashboardComp from '../components/JudgesDashboardComp'; 
+import JudgesDashboardComp from '../components/JudgesDashboardComp';
+import { securePage } from '@/services/securePage';
 
 
 function judgesdashboard () {
@@ -12,4 +13,4 @@ function judgesdashboard () {
   );
 }
 
-export default judgesdashboard;
+export default securePage(judgesdashboard, "/judgesdashboard");

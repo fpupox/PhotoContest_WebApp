@@ -7,7 +7,6 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 function JudgesDashboardComp() {
   const [contestName, setContestName] = useState('');
   const [bannerPath, setBannerPath] = useState('');
-  const [judges, setJudges] = useState([]);
   const supabase = useSupabaseClient();
 
   useEffect(() => {
@@ -31,21 +30,29 @@ function JudgesDashboardComp() {
         console.error('Error fetching contest data:', error.message);
       }
     };
-  }
-  , []);
+
+    fetchContestData();
+  }, []);
 
 
   return (
     <React.Fragment>
-      <div className="hero-container" style={{ display: 'flex', height: 'auto', width: '100%', paddingTop: '45vh', paddingBottom: '30vh',justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
-        <div className="hero-content">
-          <h1><strong>Welcome Judge!</strong></h1>
-          <h3>Begin your journey as Judge of the <br/> {contestName} Contest</h3>
+
+        <div className="hero-container" style={{ display: 'flex', height: 'auto', width: '100%', paddingTop: '30vh', paddingBottom: '30vh',justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
+          <div className="hero-content">
+          
+        
+
+
+          <h1><strong>Welcome Judge to <br/> {contestName} Contest!</strong></h1>
+          <h3>Begin your journey!</h3>
           
           
           <Link href="/votedashboardpage">
-            <Button variant="primary" type="submit" className="w-100" style={{ width: '100%' }}> Let's Get Started! </Button>
-            
+          
+          <div style={{ width: 'auto', paddingTop: '20px' }}></div>
+          <Button variant="primary" type="submit" className="w-100" style={{ width: '60vh' }}> Let's Get Started! </Button>
+          <div/>  
           </Link>
 
         </div>

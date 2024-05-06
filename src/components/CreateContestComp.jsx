@@ -1,8 +1,9 @@
-import React from 'react';
+import React  from 'react';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 
 function CreateContestComp() {
+  
   return (
     <div>
       <div className="hero-container" style={{ display: 'flex', height: 'auto', width: '100%', paddingTop: '15vh', paddingBottom: '20vh', justifyContent: 'center', backgroundColor: '#d4ffeb' }}>

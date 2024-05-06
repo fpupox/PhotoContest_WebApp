@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import StarRating from './StarRating'; // Import the HoverRating component
+import StarRating from './StarRating';
 import {
   MDBCard,
   MDBCardBody,
@@ -10,25 +10,27 @@ import {
   MDBRipple
 } from 'mdb-react-ui-kit';
 
-function VoteDashboard({ contestName }) { // Accept contestName as a prop
+function VoteDashboard({ contestName }) { // Include contestName as a prop
   const [contestEntries, setContestEntries] = useState([]);
   const supabase = useSupabaseClient();
 
   useEffect(() => {
     const fetchContestEntries = async () => {
       try {
-        const { data: contestEntryData, error: contestEntryError } = await supabase
+        const { data: contestEntriesData, error: contestEntriesError } = await supabase
           .from('Posts')
-          .select('id, title, banner_path')
+          .select('title, banner_path')
           .order('created_at', { ascending: false });
 
-        if (contestEntryError) {
-          throw contestEntryError;
+        if (contestEntriesError) {
+          throw contestEntriesError;
         }
 
-        if (contestEntryData && contestEntryData.length > 0) {
-          setContestEntries(contestEntryData);
+        if (contestEntriesData && contestEntriesData.length > 0) {
+          setContestEntries(contestEntriesData);
+          console.log('Contest Entries Data:', contestEntriesData);
         }
+
       } catch (error) {
         console.error('Error fetching contest entries:', error.message);
       }
@@ -42,24 +44,23 @@ function VoteDashboard({ contestName }) { // Accept contestName as a prop
       <div>
         <h1>Vote in {contestName}</h1>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-        {contestEntries.map(entry => (
-          <div key={entry.id} style={{ width: '30%', marginBottom: '20px' }}>
-            <MDBCard>
-              <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
-                <MDBCardImage src={entry.banner_path} fluid alt='Contest Entry Image' />
-                <a>
-                  <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-                </a>
-              </MDBRipple>
-              <MDBCardBody>
-                <MDBCardTitle>{entry.title}</MDBCardTitle>
-                <StarRating />
-              </MDBCardBody>
-            </MDBCard>
-          </div>
-        ))}
-      </div>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: '20px', padding: '20px', margin: 'auto', flexWrap: 'wrap' }}>
+  {contestEntries.map((contestEntry) => (
+    <MDBCard key={contestEntry.id} style={{ width: '30%', marginBottom: '20px' }}>
+      <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+        <MDBCardImage src={contestEntry.banner_path} fluid alt='Contest Entry Image' />
+        <a>
+          <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+        </a>
+      </MDBRipple>
+      <MDBCardBody>
+        <MDBCardTitle>{contestEntry.title}</MDBCardTitle>
+        <StarRating />
+      </MDBCardBody>
+    </MDBCard>
+  ))}
+</div>
+
     </div>
   );
 }
