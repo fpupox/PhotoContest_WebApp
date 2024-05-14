@@ -1,5 +1,6 @@
 import { getProfiles } from "@/services/getProfiles";
 import { usEffect, useEffect, useState } from "react";
+import Link from 'next/link';
 
 import { Container } from "react-bootstrap"
 

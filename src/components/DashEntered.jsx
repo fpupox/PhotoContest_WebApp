@@ -20,11 +20,11 @@ function DashEntered() {
           .select('name, banner_path')
           .order('created_at', { ascending: false })
           .limit(1);
-
+  
         if (contestError) {
           throw contestError;
         }
-
+  
         if (contestData && contestData.length > 0) {
           setContestName(contestData[0].name);
           setBannerPath(contestData[0].banner_path);
@@ -33,9 +33,9 @@ function DashEntered() {
         console.error('Error fetching contest data:', error.message);
       }
     };
-
+  
     fetchContestData();
-  }, []);
+  }, [supabase]);
 
   return (
     <div>

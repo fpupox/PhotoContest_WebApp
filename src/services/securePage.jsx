@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 
 export function securePage(Page, returnTo = "/") {
-  return () => {
+  const SecurePage = () => {
     const { isLoading, session } = useSessionContext();
     const router = useRouter();
 
@@ -23,4 +23,9 @@ export function securePage(Page, returnTo = "/") {
 
     return <Page />;
   };
+
+  // Provide a display name for your component
+  SecurePage.displayName = `SecurePage(${Page.displayName || Page.name || "Component"})`;
+
+  return SecurePage;
 }

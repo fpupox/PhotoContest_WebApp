@@ -19,7 +19,7 @@ if (isLoading) {
     return (
         <Container>
             <h2>Profile {data.Name}</h2>
-            <img src={data.Picture} alt="profile picture" width={100} height={100} />
+            <Image src={data.Picture} alt="profile picture" width={100} height={100} />
             <p>{data.backstory}</p>    
         
         
