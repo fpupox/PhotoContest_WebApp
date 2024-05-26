@@ -32,29 +32,19 @@ function JudgesDashboardComp() {
     };
 
     fetchContestData();
-  }, []);
-
+  }, [supabase]);
 
   return (
     <React.Fragment>
-
-        <div className="hero-container" style={{ display: 'flex', height: 'auto', width: '100%', paddingTop: '30vh', paddingBottom: '30vh',justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
-          <div className="hero-content">
-          
-        
-
-
+      <div className="hero-container" style={{ display: 'flex', height: 'auto', width: '100%', paddingTop: '30vh', paddingBottom: '30vh', justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
+        <div className="hero-content">
           <h1><strong>Welcome Judge to <br/> {contestName} Contest!</strong></h1>
           <h3>Begin your journey!</h3>
-          
-          
           <Link href="/votedashboardpage">
-          
-          <div style={{ width: 'auto', paddingTop: '20px' }}></div>
-          <Button variant="primary" type="submit" className="w-100" style={{ width: '60vh' }}> Let's Get Started! </Button>
-          <div/>  
+            <div style={{ width: 'auto', paddingTop: '20px' }}></div>
+            <Button variant="primary" type="submit" className="w-100" style={{ width: '60vh' }}>Let&apos;s Get Started!</Button>
+            <div/>  
           </Link>
-
         </div>
       </div>
     </React.Fragment>

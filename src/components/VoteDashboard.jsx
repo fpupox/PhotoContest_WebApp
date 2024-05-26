@@ -36,7 +36,7 @@ function VoteDashboard({ contestName }) {
     };
 
     fetchContestEntries();
-  }, []);
+  }, [supabase]); // Added 'supabase' to the dependency array
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '20px', margin: 'auto' }}>

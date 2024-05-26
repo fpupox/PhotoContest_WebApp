@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { shareOnSocialMedia } from '../utils';
 import Link from 'next/link';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import Image from 'next/image';  // Imported next/image
 
 function DashCreated() {
   const [contestName, setContestName] = useState('');
@@ -54,19 +55,17 @@ function DashCreated() {
 
     fetchContestData();
     fetchJudges();
-  }, []);
+  }, [supabase]);  // Included 'supabase' in the dependency array
 
   async function signInWithEmail() {
     const { data, error } = await supabase.auth.signInWithOtp({
       email: 'example@email.com',
       options: {
-        // set this to false if you do not want the user to be automatically signed up
         shouldCreateUser: false,
         emailRedirectTo: '{judges.length > 0 && judges[0]}',
       },
-    })
+    });
   }
-  
 
   return (
     <div>
@@ -82,7 +81,7 @@ function DashCreated() {
       <div className="hero-container" style={{ display: 'flex', padding: '20px', justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
         <div className="hero-content" style={{ textAlign: 'center' }}>
           {bannerPath && (
-            <img src={bannerPath} alt="Contest Banner" style={{ maxWidth: '60vh', maxHeight: '100%', marginBottom: '20px', borderRadius: '11px' }} />
+            <Image src={bannerPath} alt="Contest Banner" layout='intrinsic' width={600} height={400} style={{ marginBottom: '20px', borderRadius: '11px' }} />
           )}
 
           <h1>Your Contest<br/><strong>{contestName}</strong><br/> is in the Air!</h1>
@@ -93,26 +92,20 @@ function DashCreated() {
           </div>
 
           <div style={{ maxWidth: '100%', width: '100%', display: 'flex', justifyContent: 'space-between', paddingTop: '40px' }}>
-            
-            
-            
-          <div style={{ display: 'flex', justifyContent: 'space-evenly', flexDirection: 'row', gap: '20px', alignItems: 'center', width: '100%'}}>
-            <div>
-              <h6>Judge 1</h6>
-              <p>{judges.length > 0 && judges[0]}</p>
+            <div style={{ display: 'flex', justifyContent: 'space-evenly', flexDirection: 'row', gap: '20px', alignItems: 'center', width: '100%'}}>
+              <div>
+                <h6>Judge 1</h6>
+                <p>{judges.length > 0 && judges[0]}</p>
+              </div>
+              <div>
+                <h6>Judge 2</h6>
+                <p>{judges.length > 1 && judges[1]}</p>
+              </div>
+              <div>
+                <h6>Judge 3</h6>
+                <p>{judges.length > 2 && judges[2]}</p>
+              </div>
             </div>
-            <div>
-              <h6>Judge 2</h6>
-              <p>{judges.length > 1 && judges[1]}</p>
-            </div>
-            <div>
-              <h6>Judge 3</h6>
-              <p>{judges.length > 2 && judges[2]}</p>
-            </div>
-          </div>
-
-
-
           </div>
         </div>
       </div>
@@ -121,4 +114,3 @@ function DashCreated() {
 }
 
 export default DashCreated;
-
