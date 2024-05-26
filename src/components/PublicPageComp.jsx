@@ -2,7 +2,7 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Imaging from 'next/image';
 
 function PublicPageComp() {
   const [contestName, setContestName] = useState('');
@@ -39,7 +39,7 @@ function PublicPageComp() {
       <div className="hero-container" style={{ display: 'flex', height: 'auto', width: '100%', paddingTop: '10vh', paddingBottom: '30vh', justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
         <div className="hero-content">
           {bannerPath && (
-            <Image src={bannerPath} alt="Contest Banner" width={960} height={540} style={{ width: '60vh', height: 'auto' }} />
+            <Imaging src={bannerPath} alt="Contest Banner" width={960} height={540} style={{ width: '60vh', height: 'auto' }} />
           )}
           <h1>Welcome to <br/><strong>{contestName}<br/></strong> Photo Contest!</h1>
           <h3>Showcase your talent to a global audience<br/> and gain recognition for your work.</h3>

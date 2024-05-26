@@ -7,7 +7,7 @@ import {
   MDBCardTitle,
   MDBRipple
 } from 'mdb-react-ui-kit';
-import Image from './Image';
+import Imaging from './Imaging';
 
 function VoteDashboard({ contestName }) {
   const [contestEntries, setContestEntries] = useState([]);
@@ -48,7 +48,7 @@ function VoteDashboard({ contestName }) {
           <MDBCard key={contestEntry.id} style={{ width: '30%', marginBottom: '20px' }}>
             <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
               <div style={{ display: 'flex', justifyContent: 'center', maxHeight: '300px' }}> {/* Center the image and set max height */}
-                <Image src={contestEntry.banner_path} fluid alt='Contest Entry Image' style={{ maxWidth: '100%', maxHeight: '100%' }} /> {/* Set max width and height */}
+                <Imaging src={contestEntry.banner_path} fluid alt='Contest Entry Image' style={{ maxWidth: '100%', maxHeight: '100%' }} /> {/* Set max width and height */}
               </div>
               <a>
                 <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>

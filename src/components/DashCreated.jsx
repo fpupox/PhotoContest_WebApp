@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { shareOnSocialMedia } from '../utils';
 import Link from 'next/link';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import Image from 'next/image';  // Imported next/image
+import Imaging from 'next/image';  // Imported next/image
 
 function DashCreated() {
   const [contestName, setContestName] = useState('');
@@ -81,7 +81,7 @@ function DashCreated() {
       <div className="hero-container" style={{ display: 'flex', padding: '20px', justifyContent: 'center', backgroundColor: '#d4ffeb' }}>
         <div className="hero-content" style={{ textAlign: 'center' }}>
           {bannerPath && (
-            <Image src={bannerPath} alt="Contest Banner" layout='intrinsic' width={600} height={400} style={{ marginBottom: '20px', borderRadius: '11px' }} />
+            <Imaging src={bannerPath} alt="Contest Banner" layout='intrinsic' width={600} height={400} style={{ marginBottom: '20px', borderRadius: '11px' }} />
           )}
 
           <h1>Your Contest<br/><strong>{contestName}</strong><br/> is in the Air!</h1>
